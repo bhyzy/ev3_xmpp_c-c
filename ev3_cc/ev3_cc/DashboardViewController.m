@@ -7,6 +7,7 @@
 //
 
 #import "DashboardViewController.h"
+#import "XMPP.h"
 
 @interface DashboardViewController ()
 
@@ -21,7 +22,8 @@
 
 - (IBAction)signOutButtonPressed:(id)sender
 {
-    [self.delegate dashboardViewControllerDidRequestSignOut:self];
+    [self.xmppStream disconnect];
+    [self.delegate dashboardViewControllerDidSignOut:self];
 }
 
 @end

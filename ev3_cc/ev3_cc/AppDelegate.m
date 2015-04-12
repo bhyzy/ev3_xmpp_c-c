@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "SignInViewController.h"
 #import "DashboardViewController.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @interface AppDelegate () <SignInViewControllerDelegate, DashboardViewControllerDelegate>
 
@@ -26,6 +28,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
     self.currentWindowController = [self instantiateSignInWindowController];
 }
 
@@ -45,23 +49,27 @@
     return windowController;
 }
 
-- (NSWindowController *)instantiateDashboardWindowController
+- (NSWindowController *)instantiateDashboardWindowControllerWithXMPPStream:(XMPPStream *)stream
 {
     NSWindowController *windowController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"Dashboard"];
-    ((DashboardViewController *)windowController.contentViewController).delegate = self;
+    
+    DashboardViewController *dashboardViewController = (DashboardViewController *)windowController.contentViewController;
+    dashboardViewController.xmppStream = stream;
+    dashboardViewController.delegate = self;
+    
     return windowController;
 }
 
 #pragma mark - SignInViewControllerDelegate
 
-- (void)signInViewController:(SignInViewController *)controller didAuthenticateWithJID:(NSString *)jid
+- (void)signInViewController:(SignInViewController *)controller didOpenXMPPStream:(XMPPStream *)xmppStream
 {
-    self.currentWindowController = [self instantiateDashboardWindowController];
+    self.currentWindowController = [self instantiateDashboardWindowControllerWithXMPPStream:xmppStream];
 }
 
 #pragma mark - DashboardViewControllerDelegate
 
-- (void)dashboardViewControllerDidRequestSignOut:(DashboardViewController *)controller
+- (void)dashboardViewControllerDidSignOut:(DashboardViewController *)controller
 {
     self.currentWindowController = [self instantiateSignInWindowController];
 }

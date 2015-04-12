@@ -9,10 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class SignInViewController;
+@class XMPPStream;
 
 @protocol SignInViewControllerDelegate <NSObject>
 
-- (void)signInViewController:(SignInViewController *)controller didAuthenticateWithJID:(NSString *)jid;
+- (void)signInViewController:(SignInViewController *)controller didOpenXMPPStream:(XMPPStream *)xmppStream;
 
 @end
 

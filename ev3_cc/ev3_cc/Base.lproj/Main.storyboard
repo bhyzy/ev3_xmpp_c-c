@@ -720,11 +720,11 @@
             <objects>
                 <viewController storyboardIdentifier="SignInVC" id="XfG-lQ-9wD" customClass="SignInViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="437" height="198"/>
+                        <rect key="frame" x="0.0" y="0.0" width="437" height="248"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hKb-qK-bxo">
-                                <rect key="frame" x="132" y="160" width="173" height="18"/>
+                                <rect key="frame" x="132" y="210" width="173" height="18"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LEGO Mindstorms EV3" id="tHu-Ic-F4j">
                                     <font key="font" metaFont="systemBold" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -732,7 +732,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JmU-Zd-moR">
-                                <rect key="frame" x="159" y="140" width="119" height="16"/>
+                                <rect key="frame" x="159" y="190" width="119" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Command &amp; control" id="TxS-DU-vpt">
                                     <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -740,10 +740,10 @@
                                 </textFieldCell>
                             </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="PQc-cF-Ltt">
-                                <rect key="frame" x="43" y="12" width="350" height="114"/>
+                                <rect key="frame" x="43" y="12" width="350" height="164"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-9Z-oB3">
-                                        <rect key="frame" x="18" y="77" width="25" height="17"/>
+                                        <rect key="frame" x="18" y="127" width="25" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="JID" id="mPq-l5-PMg">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -751,15 +751,15 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MUS-8K-vzu">
-                                        <rect key="frame" x="101" y="74" width="229" height="22"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cAK-LF-nCn">
+                                        <rect key="frame" x="101" y="124" width="229" height="22"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="test3@localhost" drawsBackground="YES" id="cAK-LF-nCn">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rXz-iK-rlx">
-                                        <rect key="frame" x="18" y="52" width="65" height="17"/>
+                                        <rect key="frame" x="18" y="102" width="65" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Password" id="rn0-fG-Ffk">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -767,8 +767,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <secureTextField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qD9-gP-bel">
-                                        <rect key="frame" x="101" y="49" width="229" height="22"/>
-                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="QJI-7l-WOK">
+                                        <rect key="frame" x="101" y="99" width="229" height="22"/>
+                                        <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="test" drawsBackground="YES" usesSingleLineMode="YES" id="QJI-7l-WOK">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -778,7 +778,7 @@
                                         </secureTextFieldCell>
                                     </secureTextField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Blb-I6-zpl">
-                                        <rect key="frame" x="119" y="13" width="112" height="32"/>
+                                        <rect key="frame" x="119" y="63" width="112" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="Yuh-xS-Ht1"/>
                                         </constraints>
@@ -790,9 +790,21 @@
                                             <action selector="signInButtonPressed:" target="XfG-lQ-9wD" id="Kf8-W6-ySi"/>
                                         </connections>
                                     </button>
+                                    <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9FV-4V-ZDt">
+                                        <rect key="frame" x="18" y="20" width="314" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="YnT-jv-FX6"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Error message" id="uNT-8t-FP8">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Blb-I6-zpl" firstAttribute="top" secondItem="qD9-gP-bel" secondAttribute="bottom" constant="8" id="2v6-8X-Upw"/>
+                                    <constraint firstAttribute="bottom" secondItem="9FV-4V-ZDt" secondAttribute="bottom" constant="20" id="6L2-Ra-BZD"/>
                                     <constraint firstItem="qD9-gP-bel" firstAttribute="leading" secondItem="rXz-iK-rlx" secondAttribute="trailing" constant="20" id="8C3-eY-hAM"/>
                                     <constraint firstItem="rXz-iK-rlx" firstAttribute="leading" secondItem="Ejo-9Z-oB3" secondAttribute="leading" id="8rf-Um-PLG"/>
                                     <constraint firstAttribute="width" constant="350" id="ANZ-8z-8HS"/>
@@ -800,10 +812,12 @@
                                     <constraint firstAttribute="centerX" secondItem="Blb-I6-zpl" secondAttribute="centerX" id="UNp-IA-hkl"/>
                                     <constraint firstItem="Ejo-9Z-oB3" firstAttribute="baseline" secondItem="MUS-8K-vzu" secondAttribute="baseline" constant="-1" id="ZTf-wl-6q4"/>
                                     <constraint firstItem="Ejo-9Z-oB3" firstAttribute="top" secondItem="PQc-cF-Ltt" secondAttribute="top" constant="20" id="aun-U3-Wo9"/>
+                                    <constraint firstItem="9FV-4V-ZDt" firstAttribute="trailing" secondItem="qD9-gP-bel" secondAttribute="trailing" id="e3o-oo-Mu4"/>
                                     <constraint firstItem="MUS-8K-vzu" firstAttribute="leading" secondItem="qD9-gP-bel" secondAttribute="leading" id="ilg-H9-4ml"/>
+                                    <constraint firstItem="9FV-4V-ZDt" firstAttribute="leading" secondItem="rXz-iK-rlx" secondAttribute="leading" id="kne-29-ZY8"/>
                                     <constraint firstItem="rXz-iK-rlx" firstAttribute="baseline" secondItem="qD9-gP-bel" secondAttribute="baseline" constant="-1" id="lzG-LX-TgU"/>
                                     <constraint firstItem="MUS-8K-vzu" firstAttribute="trailing" secondItem="qD9-gP-bel" secondAttribute="trailing" id="mae-D3-2mi"/>
-                                    <constraint firstAttribute="bottom" secondItem="Blb-I6-zpl" secondAttribute="bottom" constant="20" id="xU5-as-1PR"/>
+                                    <constraint firstItem="9FV-4V-ZDt" firstAttribute="top" secondItem="Blb-I6-zpl" secondAttribute="bottom" constant="10" id="xIh-5e-Np8"/>
                                     <constraint firstAttribute="trailing" secondItem="MUS-8K-vzu" secondAttribute="trailing" constant="20" id="zeq-C2-po3"/>
                                 </constraints>
                             </customView>
@@ -819,13 +833,15 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="9FV-4V-ZDt" id="KrG-1w-XPa"/>
                         <outlet property="jidTextField" destination="MUS-8K-vzu" id="cPJ-SW-26L"/>
                         <outlet property="passwordTextField" destination="qD9-gP-bel" id="Y8M-6I-rDO"/>
+                        <outlet property="signInButton" destination="Blb-I6-zpl" id="6m4-9z-LrN"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75.5" y="641"/>
+            <point key="canvasLocation" x="75.5" y="666"/>
         </scene>
     </scenes>
 </document>

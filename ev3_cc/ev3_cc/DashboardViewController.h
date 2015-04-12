@@ -7,17 +7,19 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class XMPPStream;
 
 @class DashboardViewController;
 
 @protocol DashboardViewControllerDelegate <NSObject>
 
-- (void)dashboardViewControllerDidRequestSignOut:(DashboardViewController *)controller;
+- (void)dashboardViewControllerDidSignOut:(DashboardViewController *)controller;
 
 @end
 
 @interface DashboardViewController : NSViewController
 
+@property (strong, nonatomic) XMPPStream * xmppStream;
 @property (weak, nonatomic) id <DashboardViewControllerDelegate> delegate;
 
 @end

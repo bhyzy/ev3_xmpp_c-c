@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		984FC9351AD5C402002B3233 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9341AD5C402002B3233 /* AppDelegate.m */; };
 		984FC9371AD5C402002B3233 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9361AD5C402002B3233 /* main.m */; };
-		984FC93A1AD5C402002B3233 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9391AD5C402002B3233 /* ViewController.m */; };
 		984FC93C1AD5C402002B3233 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 984FC93B1AD5C402002B3233 /* Images.xcassets */; };
 		984FC93F1AD5C402002B3233 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984FC93D1AD5C402002B3233 /* Main.storyboard */; };
 		984FC94B1AD5C402002B3233 /* ev3_ccTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC94A1AD5C402002B3233 /* ev3_ccTests.m */; };
@@ -49,6 +48,8 @@
 		984FC9E91AD5C767002B3233 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9D01AD5C767002B3233 /* XMPPSRVResolver.m */; };
 		984FC9EA1AD5C767002B3233 /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9D21AD5C767002B3233 /* XMPPStringPrep.m */; };
 		984FC9EC1AD5C77F002B3233 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 984FC9EB1AD5C77F002B3233 /* libresolv.dylib */; };
+		988EF6C81ADA971E00ED30C2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6C71ADA971E00ED30C2 /* SignInViewController.m */; };
+		988EF6CB1ADA972E00ED30C2 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +68,6 @@
 		984FC9331AD5C402002B3233 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		984FC9341AD5C402002B3233 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		984FC9361AD5C402002B3233 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		984FC9381AD5C402002B3233 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		984FC9391AD5C402002B3233 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		984FC93B1AD5C402002B3233 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		984FC93E1AD5C402002B3233 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		984FC9441AD5C402002B3233 /* ev3_ccTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ev3_ccTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +147,10 @@
 		984FC9D11AD5C767002B3233 /* XMPPStringPrep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPStringPrep.h; sourceTree = "<group>"; };
 		984FC9D21AD5C767002B3233 /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		984FC9EB1AD5C77F002B3233 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		988EF6C61ADA971E00ED30C2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		988EF6C71ADA971E00ED30C2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,8 +177,6 @@
 		984FC9251AD5C402002B3233 = {
 			isa = PBXGroup;
 			children = (
-				984FC9EB1AD5C77F002B3233 /* libresolv.dylib */,
-				984FC98D1AD5C677002B3233 /* Security.framework */,
 				984FC9301AD5C402002B3233 /* ev3_cc */,
 				984FC9471AD5C402002B3233 /* ev3_ccTests */,
 				984FC92F1AD5C402002B3233 /* Products */,
@@ -195,10 +196,10 @@
 			isa = PBXGroup;
 			children = (
 				984FC96E1AD5C622002B3233 /* XMPP_Framework */,
+				988EF6C41ADA96ED00ED30C2 /* Sign in */,
+				988EF6C51ADA96F900ED30C2 /* Dashboard */,
 				984FC9331AD5C402002B3233 /* AppDelegate.h */,
 				984FC9341AD5C402002B3233 /* AppDelegate.m */,
-				984FC9381AD5C402002B3233 /* ViewController.h */,
-				984FC9391AD5C402002B3233 /* ViewController.m */,
 				984FC93B1AD5C402002B3233 /* Images.xcassets */,
 				984FC93D1AD5C402002B3233 /* Main.storyboard */,
 				984FC9311AD5C402002B3233 /* Supporting Files */,
@@ -235,6 +236,8 @@
 		984FC96E1AD5C622002B3233 /* XMPP_Framework */ = {
 			isa = PBXGroup;
 			children = (
+				984FC9EB1AD5C77F002B3233 /* libresolv.dylib */,
+				984FC98D1AD5C677002B3233 /* Security.framework */,
 				984FC9941AD5C767002B3233 /* Authentication */,
 				984FC9AB1AD5C767002B3233 /* Categories */,
 				984FC9B21AD5C767002B3233 /* Core */,
@@ -439,6 +442,24 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		988EF6C41ADA96ED00ED30C2 /* Sign in */ = {
+			isa = PBXGroup;
+			children = (
+				988EF6C61ADA971E00ED30C2 /* SignInViewController.h */,
+				988EF6C71ADA971E00ED30C2 /* SignInViewController.m */,
+			);
+			name = "Sign in";
+			sourceTree = "<group>";
+		};
+		988EF6C51ADA96F900ED30C2 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */,
+				988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -547,7 +568,6 @@
 				984FC9E81AD5C767002B3233 /* XMPPIDTracker.m in Sources */,
 				984FC9841AD5C622002B3233 /* DDLog.m in Sources */,
 				984FC9851AD5C622002B3233 /* DDTTYLogger.m in Sources */,
-				984FC93A1AD5C402002B3233 /* ViewController.m in Sources */,
 				984FC9D41AD5C767002B3233 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				984FC9D81AD5C767002B3233 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				984FC9831AD5C622002B3233 /* DDFileLogger.m in Sources */,
@@ -555,9 +575,11 @@
 				984FC9371AD5C402002B3233 /* main.m in Sources */,
 				984FC9871AD5C622002B3233 /* DispatchQueueLogFormatter.m in Sources */,
 				984FC9811AD5C622002B3233 /* DDAbstractDatabaseLogger.m in Sources */,
+				988EF6C81ADA971E00ED30C2 /* SignInViewController.m in Sources */,
 				984FC9351AD5C402002B3233 /* AppDelegate.m in Sources */,
 				984FC9821AD5C622002B3233 /* DDASLLogger.m in Sources */,
 				984FC9E31AD5C767002B3233 /* XMPPPresence.m in Sources */,
+				988EF6CB1ADA972E00ED30C2 /* DashboardViewController.m in Sources */,
 				984FC9DE1AD5C767002B3233 /* XMPPIQ.m in Sources */,
 				984FC98C1AD5C65E002B3233 /* GCDAsyncSocket.m in Sources */,
 				984FC9D31AD5C767002B3233 /* XMPPAnonymousAuthentication.m in Sources */,
@@ -780,6 +802,7 @@
 				984FC9501AD5C402002B3233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		984FC9511AD5C402002B3233 /* Build configuration list for PBXNativeTarget "ev3_ccTests" */ = {
 			isa = XCConfigurationList;
@@ -788,6 +811,7 @@
 				984FC9531AD5C402002B3233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

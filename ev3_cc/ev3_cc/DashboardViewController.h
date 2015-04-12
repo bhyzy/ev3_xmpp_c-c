@@ -13,7 +13,7 @@
 
 @protocol DashboardViewControllerDelegate <NSObject>
 
-- (void)dashboardViewControllerDidSignOut:(DashboardViewController *)controller;
+- (void)dashboardViewControllerDidDisconnect:(DashboardViewController *)controller;
 
 @end
 

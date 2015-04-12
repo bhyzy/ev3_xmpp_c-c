@@ -8,22 +8,118 @@
 
 #import "DashboardViewController.h"
 #import "XMPP.h"
+#import "XMPPMUC.h"
+#import "DDLog.h"
+#import "EV3Device.h"
 
-@interface DashboardViewController ()
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
+@interface DashboardViewController () <XMPPStreamDelegate>
+
+@property (strong, nonatomic) XMPPMUC * xmppMUC;
+
+@property (strong, nonatomic) XMPPJID * conferenceJID;
+@property (strong, nonatomic) NSString * roomsDiscoID;
+
+@property (strong, nonatomic) NSMutableArray * devices;
 
 @end
 
 @implementation DashboardViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
+#pragma mark - View Controller Life Cycle
+
+- (void)viewWillAppear
+{
+    [super viewWillAppear];
+    
+    if (self.xmppMUC == nil) {
+        NSAssert(self.xmppStream != nil, @"An XMPP stream should be ready at this point");
+        [self setupStream];
+        [self discoverDevices];
+    }
 }
+
+- (void)dealloc
+{
+    [self.xmppStream removeDelegate:self];
+}
+
+#pragma mark - XMPP Stream and MUC
+
+- (void)setupStream
+{
+    [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
+    self.xmppMUC = [[XMPPMUC alloc] init];
+    [self.xmppMUC activate:self.xmppStream];
+    
+    self.conferenceJID = [XMPPJID jidWithString:[NSString stringWithFormat:@"muc.%@", self.xmppStream.myJID.domain]];
+}
+
+- (void)discoverDevices
+{
+    self.devices = [NSMutableArray new];
+    
+    self.roomsDiscoID = [self.xmppStream generateUUID];
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
+    XMPPIQ *iq = [XMPPIQ iqWithType:@"get" to:self.conferenceJID elementID:self.roomsDiscoID child:query];
+    [self.xmppStream sendElement:iq];
+}
+
+- (void)handleRoomDiscoResult:(XMPPIQ *)iq
+{
+    // Parse conference disco result and connect to all available devices (MUC rooms)
+    NSXMLElement *queryElement = [iq elementForName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
+    NSArray *items = [queryElement elementsForName:@"item"];
+    for (NSXMLElement *item in items) {
+        XMPPJID *roomJID = [XMPPJID jidWithString:[item attributeStringValueForName:@"jid"]];
+        EV3Device *device = [[EV3Device alloc] initWithRoomJID:roomJID stream:self.xmppStream];
+        [self.devices addObject:device];
+    }
+}
+
+#pragma mark - UI Methods
 
 - (IBAction)signOutButtonPressed:(id)sender
 {
     [self.xmppStream disconnect];
-    [self.delegate dashboardViewControllerDidSignOut:self];
+    [self.delegate dashboardViewControllerDidDisconnect:self];
 }
+
+#pragma mark - XMPPStream Delegate
+
+- (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
+{
+    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    [self.delegate dashboardViewControllerDidDisconnect:self];
+}
+
+//- (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq
+//{
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//}
+//
+//- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+//{
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//}
+
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
+{
+    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    
+    if ([iq.elementID isEqualToString:self.roomsDiscoID]) {
+        [self handleRoomDiscoResult:iq];
+        return YES;
+    }
+    
+    return NO;
+}
+
+//- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
+//{
+//    DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+//}
 
 @end

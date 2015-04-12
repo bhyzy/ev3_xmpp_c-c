@@ -11,13 +11,9 @@
 #import "DDLog.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 
-// Log levels: off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-NSString * const kTempJID = @"test@localhost";
-NSString * const kTempPassword = @"test";
-
-@interface SignInViewController ()
+@interface SignInViewController () <XMPPStreamDelegate>
 
 @property (weak, nonatomic) IBOutlet NSTextField * jidTextField;
 @property (weak, nonatomic) IBOutlet NSTextField * passwordTextField;

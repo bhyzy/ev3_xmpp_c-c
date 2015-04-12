@@ -69,7 +69,7 @@
 
 #pragma mark - DashboardViewControllerDelegate
 
-- (void)dashboardViewControllerDidSignOut:(DashboardViewController *)controller
+- (void)dashboardViewControllerDidDisconnect:(DashboardViewController *)controller
 {
     self.currentWindowController = [self instantiateSignInWindowController];
 }

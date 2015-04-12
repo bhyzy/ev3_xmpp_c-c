@@ -68,6 +68,7 @@
 		988EF73F1ADAD6FD00ED30C2 /* NSDate+XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF73C1ADAD6FD00ED30C2 /* NSDate+XMPPDateTimeProfiles.m */; };
 		988EF7401ADAD6FD00ED30C2 /* XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF73E1ADAD6FD00ED30C2 /* XMPPDateTimeProfiles.m */; };
 		988EF7451ADAD74A00ED30C2 /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7431ADAD74A00ED30C2 /* XMPPCoreDataStorage.m */; };
+		988EF74A1ADAFB6300ED30C2 /* EV3Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7491ADAFB6300ED30C2 /* EV3Device.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +210,8 @@
 		988EF7431ADAD74A00ED30C2 /* XMPPCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPCoreDataStorage.m; sourceTree = "<group>"; };
 		988EF7441ADAD74A00ED30C2 /* XMPPCoreDataStorageProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPCoreDataStorageProtected.h; sourceTree = "<group>"; };
 		988EF7461ADAD7A700ED30C2 /* XMPPFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
+		988EF7481ADAFB6300ED30C2 /* EV3Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EV3Device.h; sourceTree = "<group>"; };
+		988EF7491ADAFB6300ED30C2 /* EV3Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EV3Device.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +519,8 @@
 			children = (
 				988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */,
 				988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */,
+				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
+				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -774,6 +779,7 @@
 				988EF72C1ADAD68600ED30C2 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				984FC9EA1AD5C767002B3233 /* XMPPStringPrep.m in Sources */,
 				988EF7321ADAD68600ED30C2 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
+				988EF74A1ADAFB6300ED30C2 /* EV3Device.m in Sources */,
 				984FC9861AD5C622002B3233 /* ContextFilterLogFormatter.m in Sources */,
 				988EF7301ADAD68600ED30C2 /* XMPPRoomMemoryStorage.m in Sources */,
 			);

@@ -696,14 +696,14 @@
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="emf-RG-Rhr" id="Cp8-MK-hxe">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="emf-RG-Rhr" id="Cp8-MK-hxe">
                                             <rect key="frame" x="0.0" y="0.0" width="467" height="19"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="201" minWidth="40" maxWidth="1000" id="RLt-Ei-JA4">
+                                                <tableColumn editable="NO" width="201" minWidth="40" maxWidth="1000" id="RLt-Ei-JA4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="JID">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -719,7 +719,7 @@
                                                         <binding destination="bi9-wv-pfa" name="value" keyPath="arrangedObjects.roomJID.description" id="Vqk-W5-tnC"/>
                                                     </connections>
                                                 </tableColumn>
-                                                <tableColumn width="122" minWidth="40" maxWidth="1000" id="2d8-x1-3jF">
+                                                <tableColumn editable="NO" width="122" minWidth="40" maxWidth="1000" id="2d8-x1-3jF">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -735,7 +735,7 @@
                                                         <binding destination="bi9-wv-pfa" name="value" keyPath="arrangedObjects.name" id="2Sh-rL-OIw"/>
                                                     </connections>
                                                 </tableColumn>
-                                                <tableColumn width="192" minWidth="10" maxWidth="3.4028234663852886e+38" id="gyB-9Z-jdK">
+                                                <tableColumn editable="NO" width="192" minWidth="10" maxWidth="3.4028234663852886e+38" id="gyB-9Z-jdK">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Value">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -780,7 +780,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gso-il-bRd">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gso-il-bRd">
                                 <rect key="frame" x="73" y="263" width="339" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="some.server.com:5222" id="Cea-3H-ebK">
                                     <font key="font" metaFont="system"/>
@@ -796,7 +796,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mHc-8N-FwZ">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="mHc-8N-FwZ">
                                 <rect key="frame" x="73" y="238" width="339" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="myjid@some.server.com/test" id="Be3-iF-Pxe">
                                     <font key="font" metaFont="system"/>

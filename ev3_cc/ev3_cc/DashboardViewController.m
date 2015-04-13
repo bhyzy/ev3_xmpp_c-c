@@ -21,7 +21,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @property (strong, nonatomic) XMPPJID * conferenceJID;
 @property (strong, nonatomic) NSString * roomsDiscoID;
 
-@property (strong, nonatomic) NSMutableArray * devices;
+@property (strong, nonatomic) NSArray * devices;
+
+@property (weak, nonatomic) IBOutlet NSTextField * serverAddressLabel;
+@property (weak, nonatomic) IBOutlet NSTextField * jidLabel;
 
 @end
 
@@ -36,6 +39,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (self.xmppMUC == nil) {
         NSAssert(self.xmppStream != nil, @"An XMPP stream should be ready at this point");
         [self setupStream];
+        [self setupUI];
         [self discoverDevices];
     }
 }
@@ -57,9 +61,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     self.conferenceJID = [XMPPJID jidWithString:[NSString stringWithFormat:@"muc.%@", self.xmppStream.myJID.domain]];
 }
 
+- (void)setupUI
+{
+    NSString *hostname = self.xmppStream.hostName ?: self.xmppStream.myJID.domain;
+    NSString *serverAddress = [NSString stringWithFormat:@"%@:%@", hostname, @(self.xmppStream.hostPort)];
+    
+    self.serverAddressLabel.stringValue = serverAddress;
+    self.jidLabel.stringValue = self.xmppStream.myJID.full;
+}
+
 - (void)discoverDevices
 {
-    self.devices = [NSMutableArray new];
+    self.devices = [NSArray array];
     
     self.roomsDiscoID = [self.xmppStream generateUUID];
     NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
@@ -69,13 +82,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (void)handleRoomDiscoResult:(XMPPIQ *)iq
 {
+    NSMutableArray *mutableDevices = [self mutableArrayValueForKey:@"devices"];
+    
     // Parse conference disco result and connect to all available devices (MUC rooms)
     NSXMLElement *queryElement = [iq elementForName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
     NSArray *items = [queryElement elementsForName:@"item"];
     for (NSXMLElement *item in items) {
         XMPPJID *roomJID = [XMPPJID jidWithString:[item attributeStringValueForName:@"jid"]];
         EV3Device *device = [[EV3Device alloc] initWithRoomJID:roomJID stream:self.xmppStream];
-        [self.devices addObject:device];
+        [mutableDevices addObject:device];
     }
 }
 

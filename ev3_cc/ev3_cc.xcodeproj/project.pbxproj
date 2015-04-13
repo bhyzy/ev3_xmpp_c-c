@@ -48,6 +48,7 @@
 		984FC9E91AD5C767002B3233 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9D01AD5C767002B3233 /* XMPPSRVResolver.m */; };
 		984FC9EA1AD5C767002B3233 /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = 984FC9D21AD5C767002B3233 /* XMPPStringPrep.m */; };
 		984FC9EC1AD5C77F002B3233 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 984FC9EB1AD5C77F002B3233 /* libresolv.dylib */; };
+		98514A421ADC592500A74087 /* DeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98514A411ADC592500A74087 /* DeviceViewController.m */; };
 		988EF6C81ADA971E00ED30C2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6C71ADA971E00ED30C2 /* SignInViewController.m */; };
 		988EF6CB1ADA972E00ED30C2 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */; };
 		988EF7281ADAD68600ED30C2 /* XMPPRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7061ADAD68600ED30C2 /* XMPPRoom.xcdatamodeld */; };
@@ -166,6 +167,8 @@
 		984FC9D11AD5C767002B3233 /* XMPPStringPrep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPStringPrep.h; sourceTree = "<group>"; };
 		984FC9D21AD5C767002B3233 /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		984FC9EB1AD5C77F002B3233 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		98514A401ADC592500A74087 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
+		98514A411ADC592500A74087 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
 		988EF6C61ADA971E00ED30C2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		988EF6C71ADA971E00ED30C2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -259,6 +262,9 @@
 				984FC96E1AD5C622002B3233 /* XMPP_Framework */,
 				988EF6C41ADA96ED00ED30C2 /* Sign in */,
 				988EF6C51ADA96F900ED30C2 /* Dashboard */,
+				98514A3F1ADC58D800A74087 /* Device details */,
+				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
+				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
 				984FC9331AD5C402002B3233 /* AppDelegate.h */,
 				984FC9341AD5C402002B3233 /* AppDelegate.m */,
 				984FC93B1AD5C402002B3233 /* Images.xcassets */,
@@ -505,6 +511,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		98514A3F1ADC58D800A74087 /* Device details */ = {
+			isa = PBXGroup;
+			children = (
+				98514A401ADC592500A74087 /* DeviceViewController.h */,
+				98514A411ADC592500A74087 /* DeviceViewController.m */,
+			);
+			name = "Device details";
+			sourceTree = "<group>";
+		};
 		988EF6C41ADA96ED00ED30C2 /* Sign in */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,8 +534,6 @@
 			children = (
 				988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */,
 				988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */,
-				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
-				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -767,6 +780,7 @@
 				988EF7401ADAD6FD00ED30C2 /* XMPPDateTimeProfiles.m in Sources */,
 				984FC9DF1AD5C767002B3233 /* XMPPJID.m in Sources */,
 				984FC9D91AD5C767002B3233 /* XMPPXOAuth2Google.m in Sources */,
+				98514A421ADC592500A74087 /* DeviceViewController.m in Sources */,
 				984FC9D51AD5C767002B3233 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				984FC9DD1AD5C767002B3233 /* XMPPElement.m in Sources */,
 				988EF7341ADAD68600ED30C2 /* XMPPMUC.m in Sources */,

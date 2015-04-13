@@ -11,6 +11,7 @@
 #import "XMPPMUC.h"
 #import "DDLog.h"
 #import "EV3Device.h"
+#import "DeviceViewController.h"
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
@@ -22,6 +23,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 @property (strong, nonatomic) NSString * roomsDiscoID;
 
 @property (strong, nonatomic) NSArray * devices;
+@property (strong, nonatomic) NSMutableDictionary * deviceWindowControllers;
 
 @property (weak, nonatomic) IBOutlet NSTextField * serverAddressLabel;
 @property (weak, nonatomic) IBOutlet NSTextField * jidLabel;
@@ -68,6 +70,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     self.serverAddressLabel.stringValue = serverAddress;
     self.jidLabel.stringValue = self.xmppStream.myJID.full;
+    
+    self.deviceWindowControllers = [NSMutableDictionary new];
 }
 
 - (void)discoverDevices
@@ -100,6 +104,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     [self.xmppStream disconnect];
     [self.delegate dashboardViewControllerDidDisconnect:self];
+}
+
+- (void)showDetailsWindowForDevice:(EV3Device *)device
+{
+    NSWindowController *windowController = self.deviceWindowControllers[device.roomJID];
+    if (windowController == nil) {
+        windowController = [DeviceViewController instantiateInWindowControllerWithDevice:device];
+        self.deviceWindowControllers[device.roomJID] = windowController;
+    }
+    [windowController showWindow:self];
+}
+
+- (void)dismissDetailsWindowForDevice:(EV3Device *)device
+{
+    NSWindowController *windowController = self.deviceWindowControllers[device.roomJID];
+    [self.deviceWindowControllers removeObjectForKey:device.roomJID];
+    [windowController close];
 }
 
 #pragma mark - XMPPStream Delegate

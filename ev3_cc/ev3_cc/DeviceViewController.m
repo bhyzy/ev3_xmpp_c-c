@@ -9,6 +9,8 @@
 #import "DeviceViewController.h"
 #import "EV3Device.h"
 #import "XMPPRoom.h"
+#import "RealTimePlot.h"
+#import <CorePlot/CorePlot.h>
 
 @interface DeviceViewController () <XMPPRoomDelegate>
 
@@ -16,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet NSTextField * valueLabel;
 
 @property (unsafe_unretained) IBOutlet NSTextView *consoleTextView;
+
+@property (weak, nonatomic) IBOutlet NSView * plotView;
+@property (strong, nonatomic) RealTimePlot * plot;
 
 @end
 
@@ -33,7 +38,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do view setup here.
+    
+    self.plot = [[RealTimePlot alloc] init];
+    [self.plot renderInView:self.plotView withTheme:nil animated:YES];
 }
 
 - (void)setDevice:(EV3Device *)device

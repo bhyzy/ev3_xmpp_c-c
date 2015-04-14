@@ -70,6 +70,10 @@
 		988EF7401ADAD6FD00ED30C2 /* XMPPDateTimeProfiles.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF73E1ADAD6FD00ED30C2 /* XMPPDateTimeProfiles.m */; };
 		988EF7451ADAD74A00ED30C2 /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7431ADAD74A00ED30C2 /* XMPPCoreDataStorage.m */; };
 		988EF74A1ADAFB6300ED30C2 /* EV3Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7491ADAFB6300ED30C2 /* EV3Device.m */; };
+		98E043B81ADD661400AD9F5B /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E043B71ADD661400AD9F5B /* CorePlot.framework */; };
+		98E043BC1ADD67CA00AD9F5B /* RealTimePlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E043BB1ADD67CA00AD9F5B /* RealTimePlot.m */; };
+		98E043BF1ADD67E500AD9F5B /* PlotItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 98E043BE1ADD67E500AD9F5B /* PlotItem.m */; };
+		98E043C11ADD697F00AD9F5B /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 98E043B71ADD661400AD9F5B /* CorePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,19 @@
 			remoteInfo = ev3_cc;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		98E043C01ADD697700AD9F5B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				98E043C11ADD697F00AD9F5B /* CorePlot.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		984FC92E1AD5C402002B3233 /* ev3_cc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ev3_cc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +232,11 @@
 		988EF7461ADAD7A700ED30C2 /* XMPPFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
 		988EF7481ADAFB6300ED30C2 /* EV3Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EV3Device.h; sourceTree = "<group>"; };
 		988EF7491ADAFB6300ED30C2 /* EV3Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EV3Device.m; sourceTree = "<group>"; };
+		98E043B71ADD661400AD9F5B /* CorePlot.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CorePlot.framework; path = CorePlot/CorePlot.framework; sourceTree = "<group>"; };
+		98E043BA1ADD67CA00AD9F5B /* RealTimePlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimePlot.h; sourceTree = "<group>"; };
+		98E043BB1ADD67CA00AD9F5B /* RealTimePlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimePlot.m; sourceTree = "<group>"; };
+		98E043BD1ADD67E500AD9F5B /* PlotItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotItem.h; sourceTree = "<group>"; };
+		98E043BE1ADD67E500AD9F5B /* PlotItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +246,7 @@
 			files = (
 				984FC9EC1AD5C77F002B3233 /* libresolv.dylib in Frameworks */,
 				984FC98E1AD5C677002B3233 /* Security.framework in Frameworks */,
+				98E043B81ADD661400AD9F5B /* CorePlot.framework in Frameworks */,
 				984FC9931AD5C715002B3233 /* libidn.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +282,7 @@
 		984FC9301AD5C402002B3233 /* ev3_cc */ = {
 			isa = PBXGroup;
 			children = (
+				98E043B71ADD661400AD9F5B /* CorePlot.framework */,
 				984FC96E1AD5C622002B3233 /* XMPP_Framework */,
 				988EF6C41ADA96ED00ED30C2 /* Sign in */,
 				988EF6C51ADA96F900ED30C2 /* Dashboard */,
@@ -514,6 +538,7 @@
 		98514A3F1ADC58D800A74087 /* Device details */ = {
 			isa = PBXGroup;
 			children = (
+				98E043B91ADD67B000AD9F5B /* Plot */,
 				98514A401ADC592500A74087 /* DeviceViewController.h */,
 				98514A411ADC592500A74087 /* DeviceViewController.m */,
 			);
@@ -640,6 +665,17 @@
 			path = CoreDataStorage;
 			sourceTree = "<group>";
 		};
+		98E043B91ADD67B000AD9F5B /* Plot */ = {
+			isa = PBXGroup;
+			children = (
+				98E043BD1ADD67E500AD9F5B /* PlotItem.h */,
+				98E043BE1ADD67E500AD9F5B /* PlotItem.m */,
+				98E043BA1ADD67CA00AD9F5B /* RealTimePlot.h */,
+				98E043BB1ADD67CA00AD9F5B /* RealTimePlot.m */,
+			);
+			name = Plot;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -650,6 +686,7 @@
 				984FC92A1AD5C402002B3233 /* Sources */,
 				984FC92B1AD5C402002B3233 /* Frameworks */,
 				984FC92C1AD5C402002B3233 /* Resources */,
+				98E043C01ADD697700AD9F5B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -751,9 +788,11 @@
 				984FC9E91AD5C767002B3233 /* XMPPSRVResolver.m in Sources */,
 				984FC9E81AD5C767002B3233 /* XMPPIDTracker.m in Sources */,
 				988EF7311ADAD68600ED30C2 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
+				98E043BC1ADD67CA00AD9F5B /* RealTimePlot.m in Sources */,
 				984FC9841AD5C622002B3233 /* DDLog.m in Sources */,
 				984FC9851AD5C622002B3233 /* DDTTYLogger.m in Sources */,
 				984FC9D41AD5C767002B3233 /* XMPPDeprecatedDigestAuthentication.m in Sources */,
+				98E043BF1ADD67E500AD9F5B /* PlotItem.m in Sources */,
 				984FC9D81AD5C767002B3233 /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				984FC9831AD5C622002B3233 /* DDFileLogger.m in Sources */,
 				984FC9E01AD5C767002B3233 /* XMPPMessage.m in Sources */,
@@ -910,6 +949,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ev3_cc/CorePlot",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -931,6 +974,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ev3_cc/CorePlot",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

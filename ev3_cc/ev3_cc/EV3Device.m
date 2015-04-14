@@ -17,9 +17,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface EV3Device () <XMPPStreamDelegate>
 
-@property (strong, nonatomic) XMPPRoom * room;
+@property (readwrite, strong, nonatomic) XMPPRoom * room;
 @property (readwrite, copy, nonatomic) NSString * name;
-@property (readwrite, strong, nonatomic) id value;
+@property (readwrite, strong, nonatomic) NSObject * value;
 
 @end
 
@@ -69,7 +69,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
-- (id)parseValue:(NSString *)stringValue
+- (NSObject *)parseValue:(NSString *)stringValue
 {
     // TODO [bhy] implement real parsing and return appropriate value based on device type
     return stringValue;

@@ -7,8 +7,15 @@
 //
 
 #import "DeviceViewController.h"
+#import "EV3Device.h"
+#import "XMPPRoom.h"
 
-@interface DeviceViewController ()
+@interface DeviceViewController () <XMPPRoomDelegate>
+
+@property (weak, nonatomic) IBOutlet NSTextField * jidLabel;
+@property (weak, nonatomic) IBOutlet NSTextField * valueLabel;
+
+@property (unsafe_unretained) IBOutlet NSTextView *consoleTextView;
 
 @end
 
@@ -27,6 +34,29 @@
 {
     [super viewDidLoad];
     // Do view setup here.
+}
+
+- (void)setDevice:(EV3Device *)device
+{
+    NSAssert(self.device == nil, @"A device has been already associated with this instance");
+    
+    _device = device;
+
+    [self.device.room addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
+    self.jidLabel.stringValue = device.roomJID.full;
+}
+
+#pragma mark - XMPPRoomDelegate
+
+- (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromOccupant:(XMPPJID *)occupantJID
+{
+    NSMutableString *consoleText = self.consoleTextView.textStorage.mutableString;
+    if (consoleText.length > 0) {
+        [consoleText appendString:@"\n"];
+    }
+    [consoleText appendString:[NSString stringWithFormat:@"<%@> %@", occupantJID.full, message.body]];
+    [self.consoleTextView scrollRangeToVisible:NSMakeRange(consoleText.length, 0)];
 }
 
 @end

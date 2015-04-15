@@ -26,6 +26,8 @@
 
 @implementation DeviceViewController
 
+#pragma mark - Public API
+
 + (NSWindowController *)instantiateInWindowControllerWithDevice:(EV3Device *)device
 {
     NSStoryboard *storyboard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -35,6 +37,19 @@
     return windowController;
 }
 
+- (void)setDevice:(EV3Device *)device
+{
+    NSAssert(self.device == nil, @"A device has been already associated with this instance");
+    
+    _device = device;
+    
+    [self.device.room addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
+    self.jidLabel.stringValue = device.roomJID.full;
+}
+
+#pragma mark - View Controller Life Cycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,15 +58,14 @@
     [self.plot renderInView:self.plotView withTheme:nil animated:YES];
 }
 
-- (void)setDevice:(EV3Device *)device
-{
-    NSAssert(self.device == nil, @"A device has been already associated with this instance");
-    
-    _device = device;
+#pragma mark - UI Methods
 
-    [self.device.room addDelegate:self delegateQueue:dispatch_get_main_queue()];
+- (IBAction)pressedEnterInTextField:(NSTextField *)textField
+{
+    NSString *message = textField.stringValue;
+    textField.stringValue = @"";
     
-    self.jidLabel.stringValue = device.roomJID.full;
+    [self.device.room sendMessageWithBody:message];
 }
 
 #pragma mark - XMPPRoomDelegate
@@ -62,7 +76,7 @@
     if (consoleText.length > 0) {
         [consoleText appendString:@"\n"];
     }
-    [consoleText appendString:[NSString stringWithFormat:@"<%@> %@", occupantJID.full, message.body]];
+    [consoleText appendString:[NSString stringWithFormat:@"<%@> %@", occupantJID.resource, message.body]];
     [self.consoleTextView scrollRangeToVisible:NSMakeRange(consoleText.length, 0)];
 }
 

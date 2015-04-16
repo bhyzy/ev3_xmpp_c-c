@@ -11,15 +11,21 @@
 #import "XMPPRoom.h"
 #import "XMPPRoomMemoryStorage.h"
 #import "XMPPMessage+XEP0045.h"
+#import "XMPPStream.h"
 #import "DDLog.h"
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 
 @interface EV3Device () <XMPPStreamDelegate>
 
 @property (readwrite, strong, nonatomic) XMPPRoom * room;
+@property (strong, nonatomic) XMPPJID * roomOwnerJID;
+
 @property (readwrite, copy, nonatomic) NSString * name;
 @property (readwrite, strong, nonatomic) NSObject * value;
+@property (readwrite, assign, nonatomic) NSUInteger decimals;
+@property (readwrite, strong, nonatomic) NSArray * modes;
+@property (readwrite, copy, nonatomic) NSString * unit;
 
 @end
 
@@ -36,12 +42,31 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         _name = nil; // TODO [bhy] implement
         
         self.room = [[XMPPRoom alloc] initWithRoomStorage:[[XMPPRoomMemoryStorage alloc] init] jid:roomJID];
+        // TODO [bhy] for now let's assume the room owner (actual device) will use the nickname 'device'
+        self.roomOwnerJID = [roomJID jidWithNewResource:@"device"];
         
         [self.room addDelegate:self delegateQueue:dispatch_get_main_queue()];
         [self.room activate:stream];
         [self.room joinRoomUsingNickname:@"client" history:nil];
+        
+        [self.stream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+        
+        // let's get some device data right off the bat
+        [self sendMessageWithBody:@"get modes"];
+        [self sendMessageWithBody:@"get mode"];
+        [self sendMessageWithBody:@"get unit"];
+        [self sendMessageWithBody:@"get decimals"];
+        [self sendMessageWithBody:@"get value"];
     }
     return self;
+}
+
+- (XMPPMessage *)sendMessageWithBody:(NSString *)body
+{
+    NSXMLElement *bodyElement = [NSXMLElement elementWithName:@"body" stringValue:body];
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:self.roomOwnerJID elementID:nil child:bodyElement];
+    [self.room.xmppStream sendElement:message];
+    return message;
 }
 
 #pragma mark - Private Methods
@@ -49,21 +74,30 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)handleDeviceMessageBody:(NSString *)body
 {
     NSArray *components = [body componentsSeparatedByString:@" "];
-    if (components.count == 0) {
-        DDLogError(@"%@, %@ # failed to parse message body (no components): %@", THIS_FILE, THIS_METHOD, body);
+    NSString *messageType = components.count > 0 ? components[0] : nil;
+    NSString *argument = components.count > 1 ? components[1] : nil;
+
+    if (messageType == nil) {
+        DDLogError(@"%@, %@ # missing message type", THIS_FILE, THIS_METHOD);
         return;
     }
     
-    NSString *messageType = components[0];
+    if (argument == nil) {
+        DDLogError(@"%@, %@ # missing argument for message type '%@'", THIS_FILE, THIS_METHOD, messageType);
+        return;
+    }
+    
     if ([messageType isEqualToString:@"value"]) {
-        NSString *valueString;
-        if (components.count > 1) {
-            valueString = components[1];
-            self.value = [self parseValue:valueString];
-            DDLogVerbose(@"%@, %@ # did update value of %@: %@", THIS_FILE, THIS_METHOD, self.roomJID, self.value);
-        } else {
-            DDLogError(@"%@, %@ # failed to parse message body (missing value): %@", THIS_FILE, THIS_METHOD, body);
-        }
+        self.value = [self parseValue:argument];
+        DDLogVerbose(@"%@, %@ # did update value of %@: %@", THIS_FILE, THIS_METHOD, self.roomJID, self.value);
+    } else if ([messageType isEqualToString:@"mode"]) {
+        self.mode = argument;
+    } else if ([messageType isEqualToString:@"unit"]) {
+        self.unit = argument;
+    } else if ([messageType isEqualToString:@"decimals"]) {
+        self.decimals = (NSUInteger)[argument integerValue];
+    } else if ([messageType isEqualToString:@"modes"]) {
+        self.modes = [argument componentsSeparatedByString:@","];
     } else {
         DDLogError(@"%@, %@ # failed to parse message body (unrecognized message type '%@'): %@", THIS_FILE, THIS_METHOD, messageType, body);
     }
@@ -77,16 +111,25 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #pragma mark - XMPP Stream Delegate
 
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+{
+    if (message.isGroupChatMessage) {
+        // group chat messages are handled separately
+        return;
+    }
+    
+    // we're only interested in messages from the device itself
+    if ([message.from isEqualToJID:self.roomOwnerJID]) {
+        [self handleDeviceMessageBody:message.body];
+    }
+}
+
+#pragma mark - XMPP Room Delegate
+
 - (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromOccupant:(XMPPJID *)occupantJID
 {
-    //DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
-    
-//    <message xmlns="jabber:client" from="sensor3@muc.localhost/sensor3" to="test3@localhost/Bartlomiej’s MacBook Pro" type="groupchat" lang="en">
-//        <body>value 793</body>
-//    </message>
-    
-    // TODO [bhy] handle only messages originating from the device itself?
-    if (/*[message.from isEqual:self.roomJID] &&*/ [message isGroupChatMessageWithBody]) {
+    // we're only interested in messages from the device itself
+    if ([occupantJID isEqualToJID:self.roomOwnerJID]) {
         [self handleDeviceMessageBody:message.body];
     }
 }

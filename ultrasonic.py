@@ -40,7 +40,7 @@ class MUCBot(sleekxmpp.ClientXMPP):
         self.set_mode("US-DIST-CM")
 
         self.add_event_handler("session_start", self.start)
-        self.add_event_handler("groupchat_message", self.muc_message)
+        self.add_event_handler("message", self.handle_message)
 
     def start(self, event):
         self.get_roster()
@@ -52,7 +52,7 @@ class MUCBot(sleekxmpp.ClientXMPP):
         timerThread.daemon = True
         timerThread.start()
 
-    def muc_message(self, msg):
+    def handle_message(self, msg):
         if msg['mucnick'] != self.nick:
             body = msg['body']
             tokens = body.split()
@@ -75,15 +75,17 @@ class MUCBot(sleekxmpp.ClientXMPP):
             returnVal = "value " + str(self.value)
         elif attrib == "decimals":
             returnVal = "decimals " + str(self.decimals)
+        elif attrib == "modes":
+            returnVal = "modes " + ",".join(self.modes)
 
         if returnVal:
-            self.send_message(mto=msg['from'].bare, mbody=returnVal, mtype='groupchat')
+            self.send_message(mto=msg['from'].full, mbody=returnVal, mtype='chat')
 
     def handle_set(self, msg, attrib, newValue):
         confirmMsg = None
 
         if attrib == "mode":
-            if self.set_mode(newVal):
+            if self.set_mode(newValue):
                 confirmMsg = "mode " + self.mode
 
         if confirmMsg:
@@ -93,8 +95,8 @@ class MUCBot(sleekxmpp.ClientXMPP):
         next_call = time.time()
         while True:
             self.value = self.gen_value()
-            if self.value:
-                self.send_message(mto=self.room, mbody="value %d" % self.value, mtype='groupchat')
+            #if self.value:
+             #   self.send_message(mto=self.room, mbody="value %d" % self.value, mtype='groupchat')
 
             next_call = next_call+1;
             time.sleep(next_call - time.time())

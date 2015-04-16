@@ -287,8 +287,7 @@
 				988EF6C41ADA96ED00ED30C2 /* Sign in */,
 				988EF6C51ADA96F900ED30C2 /* Dashboard */,
 				98514A3F1ADC58D800A74087 /* Device details */,
-				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
-				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
+				989510A31AE00BE200CA51A4 /* Devices */,
 				984FC9331AD5C402002B3233 /* AppDelegate.h */,
 				984FC9341AD5C402002B3233 /* AppDelegate.m */,
 				984FC93B1AD5C402002B3233 /* Images.xcassets */,
@@ -663,6 +662,15 @@
 				988EF7441ADAD74A00ED30C2 /* XMPPCoreDataStorageProtected.h */,
 			);
 			path = CoreDataStorage;
+			sourceTree = "<group>";
+		};
+		989510A31AE00BE200CA51A4 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
+				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
+			);
+			name = Devices;
 			sourceTree = "<group>";
 		};
 		98E043B91ADD67B000AD9F5B /* Plot */ = {

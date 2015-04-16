@@ -879,6 +879,7 @@
                     </view>
                     <connections>
                         <outlet property="consoleTextView" destination="YAw-WZ-oEX" id="Ohh-u2-dUH"/>
+                        <outlet property="inputTextField" destination="vmJ-B7-rcM" id="s9G-Qk-dcf"/>
                         <outlet property="jidLabel" destination="PvO-JN-q6c" id="aEW-Vb-kMH"/>
                         <outlet property="plotView" destination="J5f-Io-jhV" id="uRG-W2-5mU"/>
                         <outlet property="valueLabel" destination="Cl7-6j-xWX" id="H9e-Gr-Urq"/>

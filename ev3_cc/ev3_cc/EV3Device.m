@@ -39,7 +39,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (self != nil) {
         _roomJID = roomJID;
         _stream = stream;
-        _name = nil; // TODO [bhy] implement
+        _name = roomJID.user;
         
         self.room = [[XMPPRoom alloc] initWithRoomStorage:[[XMPPRoomMemoryStorage alloc] init] jid:roomJID];
         // TODO [bhy] for now let's assume the room owner (actual device) will use the nickname 'device'

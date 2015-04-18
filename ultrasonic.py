@@ -95,8 +95,8 @@ class MUCBot(sleekxmpp.ClientXMPP):
         next_call = time.time()
         while True:
             self.value = self.gen_value()
-            #if self.value:
-             #   self.send_message(mto=self.room, mbody="value %d" % self.value, mtype='groupchat')
+            if self.value:
+                self.send_message(mto=self.room, mbody="value %d" % self.value, mtype='groupchat')
 
             next_call = next_call+1;
             time.sleep(next_call - time.time())

@@ -5,7 +5,7 @@
 
 #import "RealTimePlot.h"
 
-static const double kFrameRate = 10.0;  // frames per second
+static const double kFrameRate = 5.0;  // frames per second
 
 static const NSUInteger kMaxDataPoints = 52;
 static NSString *const kPlotIdentifier = @"Data Source Plot";
@@ -19,6 +19,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
         dataTimer = nil;
         
         _currentValue = @0;
+        _valueRange = EV3MakeValueRange(0, 0);
     }
 
     return self;
@@ -100,7 +101,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     // Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(300)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(0)];
 
     [dataTimer invalidate];
 
@@ -120,6 +121,16 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
 -(void)dealloc
 {
     [dataTimer invalidate];
+}
+
+- (void)setValueRange:(EV3ValueRange)valueRange
+{
+    _valueRange = valueRange;
+
+    CPTGraph *theGraph = [self.graphs objectAtIndex:0];
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)theGraph.defaultPlotSpace;
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.valueRange.minValue) length:CPTDecimalFromDouble(self.valueRange.maxValue - self.valueRange.minValue)];
+
 }
 
 #pragma mark -

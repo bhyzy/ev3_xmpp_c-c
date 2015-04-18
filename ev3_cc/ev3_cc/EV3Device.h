@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EV3ValueRange.h"
 
 @class XMPPJID;
 @class XMPPStream;
@@ -27,6 +28,8 @@
 @property (readwrite, copy, nonatomic) NSString * mode;
 @property (readonly, strong, nonatomic) NSArray * modes;
 @property (readonly, copy, nonatomic) NSString * unit;
+
+@property (readonly, nonatomic) EV3ValueRange valueRange;
 
 @property (readonly, nonatomic) NSString * valueString;
 @property (readonly, nonatomic) NSNumber * formattedValue;

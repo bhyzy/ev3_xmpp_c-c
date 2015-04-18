@@ -26,6 +26,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @property (readwrite, assign, nonatomic) NSUInteger decimals;
 @property (readwrite, strong, nonatomic) NSArray * modes;
 @property (readwrite, copy, nonatomic) NSString * unit;
+@property (readwrite, assign, nonatomic) EV3ValueRange valueRange;
 
 @property (strong, nonatomic) NSNumberFormatter * numberFormatter;
 
@@ -42,6 +43,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         _roomJID = roomJID;
         _stream = stream;
         _name = roomJID.user;
+        _valueRange = [EV3Device valueRangeForDeviceNamed:_name inMode:nil];
         
         self.room = [[XMPPRoom alloc] initWithRoomStorage:[[XMPPRoomMemoryStorage alloc] init] jid:roomJID];
         // TODO [bhy] for now let's assume the room owner (actual device) will use the nickname 'device'
@@ -99,6 +101,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (![mode isEqualToString:self.mode]) {
         _mode = [mode copy];
         [self sendMessageWithBody:[@"set mode " stringByAppendingString:mode]];
+        self.valueRange = [EV3Device valueRangeForDeviceNamed:self.name inMode:_mode];
     }
 }
 
@@ -125,7 +128,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         self.rawValue = [self.numberFormatter numberFromString:argument];
         DDLogVerbose(@"%@, %@ # did update value of %@: %@", THIS_FILE, THIS_METHOD, self.roomJID, self.rawValue);
     } else if ([messageType isEqualToString:@"mode"]) {
-        self.mode = argument;
+        // don't use the setter in order to avoid side effects
+        [self willChangeValueForKey:@"mode"];
+        _mode = argument;
+        self.valueRange = [EV3Device valueRangeForDeviceNamed:self.name inMode:_mode];
+        [self didChangeValueForKey:@"mode"];
     } else if ([messageType isEqualToString:@"unit"]) {
         self.unit = argument;
     } else if ([messageType isEqualToString:@"decimals"]) {
@@ -135,6 +142,29 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     } else {
         DDLogError(@"%@, %@ # failed to parse message body (unrecognized message type '%@'): %@", THIS_FILE, THIS_METHOD, messageType, body);
     }
+}
+
+// Let's hard code possible value ranges for some devices.
+// Not the most elegant solution out there, but hey, it's enough for this proof of concept.
++ (EV3ValueRange)valueRangeForDeviceNamed:(NSString *)deviceName inMode:(NSString *)mode
+{
+    EV3ValueRange range = EV3MakeValueRange(0, 300);
+    
+    if ([deviceName isEqualToString:@"lego-ev3-uart-30"]) {
+        // EV3 ultrasonic distance sensor
+        if ([mode isEqualToString:@"US-DIST-CM"]) {
+            range = EV3MakeValueRange(0, 255);
+        } else if ([mode isEqualToString:@"US-DIST-IN"]) {
+            range = EV3MakeValueRange(0, 100.3);
+        }
+    } else if ([deviceName isEqualToString:@"lego-ev3-touch"]) {
+        // EV3 touch sensor (button)
+        if ([mode isEqualToString:@"TOUCH"]) {
+            range = EV3MakeValueRange(0, 1);
+        }
+    }
+    
+    return range;
 }
 
 #pragma mark - XMPP Stream Delegate

@@ -53,6 +53,9 @@
     
     self.plot.currentValue = self.device.formattedValue;
     [self.device addObserver:self forKeyPath:@"formattedValue" options:0 context:NULL];
+    
+    self.plot.valueRange = self.device.valueRange;
+    [self.device addObserver:self forKeyPath:@"valueRange" options:0 context:NULL];
 }
 
 #pragma mark - View Controller Life Cycle
@@ -74,6 +77,7 @@
 - (void)dealloc
 {
     [self.device removeObserver:self forKeyPath:@"formattedValue"];
+    [self.device removeObserver:self forKeyPath:@"valueRange"];
 }
 
 #pragma mark - UI Methods
@@ -99,8 +103,12 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (object == self.device && [keyPath isEqualToString:@"formattedValue"]) {
-        self.plot.currentValue = self.device.formattedValue;
+    if (object == self.device) {
+        if ([keyPath isEqualToString:@"formattedValue"]) {
+            self.plot.currentValue = self.device.formattedValue;
+        } else if ([keyPath isEqualToString:@"valueRange"]) {
+            self.plot.valueRange = self.device.valueRange;
+        }
     }
 }
 

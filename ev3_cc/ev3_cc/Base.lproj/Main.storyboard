@@ -746,7 +746,7 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="Xb3-kP-f8f" name="value" keyPath="selection.formattedValue" id="rcE-WL-xd3">
+                                                <binding destination="Xb3-kP-f8f" name="value" keyPath="selection.valueString" id="vgO-ZU-U8D">
                                                     <dictionary key="options">
                                                         <string key="NSNoSelectionPlaceholder">?</string>
                                                         <string key="NSNullPlaceholder">?</string>
@@ -992,7 +992,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <connections>
-                                                        <binding destination="bi9-wv-pfa" name="value" keyPath="arrangedObjects.formattedValue" id="DRg-t8-wpq">
+                                                        <binding destination="bi9-wv-pfa" name="value" keyPath="arrangedObjects.valueString" id="q11-oo-Yck">
                                                             <dictionary key="options">
                                                                 <bool key="NSConditionallySetsEditable" value="YES"/>
                                                             </dictionary>

@@ -186,6 +186,7 @@
 		984FC9EB1AD5C77F002B3233 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		98514A401ADC592500A74087 /* DeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceViewController.h; sourceTree = "<group>"; };
 		98514A411ADC592500A74087 /* DeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceViewController.m; sourceTree = "<group>"; };
+		988933431AE2BCD1003DC7B7 /* EV3ValueRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EV3ValueRange.h; sourceTree = "<group>"; };
 		988EF6C61ADA971E00ED30C2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		988EF6C71ADA971E00ED30C2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -669,6 +670,7 @@
 			children = (
 				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
 				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
+				988933431AE2BCD1003DC7B7 /* EV3ValueRange.h */,
 			);
 			name = Devices;
 			sourceTree = "<group>";

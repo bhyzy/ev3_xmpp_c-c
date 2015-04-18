@@ -65,6 +65,16 @@ class MUCBot(sleekxmpp.ClientXMPP):
                 self.handle_set(msg, attrib, newValue)
 
     def handle_get(self, msg, attrib):
+        self.send_attribute_value(attrib, msg['from'].full, "chat")
+
+    def handle_set(self, msg, attrib, newValue):
+        if attrib == "mode":
+            if self.set_mode(newValue):
+                self.send_attribute_value("mode", self.room, "groupchat")
+                self.send_attribute_value("decimals", self.room, "groupchat")
+                self.send_attribute_value("unit", self.room, "groupchat")
+
+    def send_attribute_value(self, attrib, to, type):
         returnVal = None
 
         if attrib == "mode":
@@ -79,24 +89,13 @@ class MUCBot(sleekxmpp.ClientXMPP):
             returnVal = "modes " + ",".join(self.modes)
 
         if returnVal:
-            self.send_message(mto=msg['from'].full, mbody=returnVal, mtype='chat')
-
-    def handle_set(self, msg, attrib, newValue):
-        confirmMsg = None
-
-        if attrib == "mode":
-            if self.set_mode(newValue):
-                confirmMsg = "mode " + self.mode
-
-        if confirmMsg:
-            self.send_message(mto=self.room, mbody=confirmMsg, mtype='groupchat')
+            self.send_message(mto=to, mbody=returnVal, mtype=type)
 
     def loop(self):
         next_call = time.time()
         while True:
             self.value = self.gen_value()
-            if self.value:
-                self.send_message(mto=self.room, mbody="value %d" % self.value, mtype='groupchat')
+            self.send_attribute_value("value", self.room, "groupchat")
 
             next_call = next_call+1;
             time.sleep(next_call - time.time())

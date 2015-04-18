@@ -22,10 +22,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @property (strong, nonatomic) XMPPJID * roomOwnerJID;
 
 @property (readwrite, copy, nonatomic) NSString * name;
-@property (readwrite, strong, nonatomic) NSObject * value;
+@property (readwrite, strong, nonatomic) NSNumber * value;
 @property (readwrite, assign, nonatomic) NSUInteger decimals;
 @property (readwrite, strong, nonatomic) NSArray * modes;
 @property (readwrite, copy, nonatomic) NSString * unit;
+
+@property (strong, nonatomic) NSNumberFormatter * numberFormatter;
 
 @end
 
@@ -57,6 +59,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [self sendMessageWithBody:@"get unit"];
         [self sendMessageWithBody:@"get decimals"];
         [self sendMessageWithBody:@"get value"];
+        
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+        _numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     }
     return self;
 }
@@ -67,6 +72,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:self.roomOwnerJID elementID:nil child:bodyElement];
     [self.room.xmppStream sendElement:message];
     return message;
+}
+
+- (NSString *)formattedValue
+{
+    double value = self.value.doubleValue / pow(10, self.decimals);
+    return [NSString stringWithFormat:@"%.1f %@", value, self.unit];
 }
 
 #pragma mark - Private Methods
@@ -88,7 +99,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
     
     if ([messageType isEqualToString:@"value"]) {
-        self.value = [self parseValue:argument];
+        // at the moment we're only supporting single-value modes
+        self.value = [self.numberFormatter numberFromString:argument];
         DDLogVerbose(@"%@, %@ # did update value of %@: %@", THIS_FILE, THIS_METHOD, self.roomJID, self.value);
     } else if ([messageType isEqualToString:@"mode"]) {
         self.mode = argument;
@@ -103,10 +115,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 }
 
-- (NSObject *)parseValue:(NSString *)stringValue
++ (NSSet *)keyPathsForValuesAffectingFormattedValue
 {
-    // TODO [bhy] implement real parsing and return appropriate value based on device type
-    return stringValue;
+    return [NSSet setWithObjects:@"value", @"decimals", @"unity", nil];
 }
 
 #pragma mark - XMPP Stream Delegate

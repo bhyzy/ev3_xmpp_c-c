@@ -50,6 +50,9 @@
     [self.device.stream addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     self.jidLabel.stringValue = device.roomJID.full;
+    
+    self.plot.currentValue = self.device.formattedValue;
+    [self.device addObserver:self forKeyPath:@"formattedValue" options:0 context:NULL];
 }
 
 #pragma mark - View Controller Life Cycle
@@ -66,6 +69,11 @@
 {
     [super viewWillAppear];
     [self.view.window makeFirstResponder:self.inputTextField];
+}
+
+- (void)dealloc
+{
+    [self.device removeObserver:self forKeyPath:@"formattedValue"];
 }
 
 #pragma mark - UI Methods
@@ -87,6 +95,13 @@
     }
     [consoleText appendString:[NSString stringWithFormat:@"<%@> %@", occupantJID.resource, message.body]];
     [self.consoleTextView scrollRangeToVisible:NSMakeRange(consoleText.length, 0)];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self.device && [keyPath isEqualToString:@"formattedValue"]) {
+        self.plot.currentValue = self.device.formattedValue;
+    }
 }
 
 #pragma mark - XMPPStreamDelegate

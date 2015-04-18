@@ -5,8 +5,7 @@
 
 #import "RealTimePlot.h"
 
-static const double kFrameRate = 5.0;  // frames per second
-static const double kAlpha     = 0.25; // smoothing constant
+static const double kFrameRate = 10.0;  // frames per second
 
 static const NSUInteger kMaxDataPoints = 52;
 static NSString *const kPlotIdentifier = @"Data Source Plot";
@@ -18,9 +17,8 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     if ( (self = [super init]) ) {
         plotData  = [[NSMutableArray alloc] initWithCapacity:kMaxDataPoints];
         dataTimer = nil;
-
-        self.title   = @"Real Time Plot";
-        self.section = kLinePlots;
+        
+        _currentValue = @0;
     }
 
     return self;
@@ -42,22 +40,15 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
 
 -(void)renderInLayer:(CPTGraphHostingView *)layerHostingView withTheme:(CPTTheme *)theme animated:(BOOL)animated
 {
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
-    CGRect bounds = layerHostingView.bounds;
-#else
     CGRect bounds = NSRectToCGRect(layerHostingView.bounds);
-#endif
 
     CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:bounds];
     [self addGraph:graph toHostingView:layerHostingView];
-    [self applyTheme:theme toGraph:graph withDefault:[CPTTheme themeNamed:kCPTDarkGradientTheme]];
-
-    [self setTitleDefaultsForGraph:graph withBounds:bounds];
-    [self setPaddingDefaultsForGraph:graph withBounds:bounds];
+    [self applyTheme:theme toGraph:graph withDefault:[CPTTheme themeNamed:kCPTPlainWhiteTheme]];
 
     graph.plotAreaFrame.paddingTop    = 15.0;
     graph.plotAreaFrame.paddingRight  = 15.0;
-    graph.plotAreaFrame.paddingBottom = 55.0;
+    graph.plotAreaFrame.paddingBottom = 35.0;
     graph.plotAreaFrame.paddingLeft   = 55.0;
     graph.plotAreaFrame.masksToBorder = NO;
 
@@ -79,8 +70,6 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     x.majorGridLineStyle          = majorGridLineStyle;
     x.minorGridLineStyle          = minorGridLineStyle;
     x.minorTicksPerInterval       = 9;
-    x.title                       = @"X Axis";
-    x.titleOffset                 = 35.0;
     NSNumberFormatter *labelFormatter = [[NSNumberFormatter alloc] init];
     labelFormatter.numberStyle = NSNumberFormatterNoStyle;
     x.labelFormatter           = labelFormatter;
@@ -93,12 +82,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     y.minorGridLineStyle          = minorGridLineStyle;
     y.minorTicksPerInterval       = 3;
     y.labelOffset                 = 5.0;
-    y.title                       = @"Y Axis";
-    y.titleOffset                 = 30.0;
     y.axisConstraints             = [CPTConstraints constraintWithLowerOffset:0.0];
-
-    // Rotate the labels by 45 degrees, just to show it can be done.
-    x.labelRotation = M_PI_4;
 
     // Create the plot
     CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
@@ -107,7 +91,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
 
     CPTMutableLineStyle *lineStyle = [dataSourceLinePlot.dataLineStyle mutableCopy];
     lineStyle.lineWidth              = 3.0;
-    lineStyle.lineColor              = [CPTColor greenColor];
+    lineStyle.lineColor              = [CPTColor redColor];
     dataSourceLinePlot.dataLineStyle = lineStyle;
 
     dataSourceLinePlot.dataSource = self;
@@ -116,7 +100,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
     // Plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(kMaxDataPoints - 2)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(1)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromUnsignedInteger(0) length:CPTDecimalFromUnsignedInteger(300)];
 
     [dataTimer invalidate];
 
@@ -165,7 +149,7 @@ static NSString *const kPlotIdentifier = @"Data Source Plot";
                      duration:CPTFloat(1.0 / kFrameRate)];
 
         currentIndex++;
-        [plotData addObject:[NSNumber numberWithDouble:(1.0 - kAlpha) * [[plotData lastObject] doubleValue] + kAlpha * rand() / (double)RAND_MAX]];
+        [plotData addObject:self.currentValue];
         [thePlot insertDataAtIndex:plotData.count - 1 numberOfRecords:1];
     }
 }

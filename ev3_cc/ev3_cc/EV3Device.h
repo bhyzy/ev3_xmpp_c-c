@@ -22,13 +22,14 @@
 @property (readonly, nonatomic) XMPPStream * stream;
 
 @property (readonly, copy, nonatomic) NSString * name;
-@property (readonly, strong, nonatomic) NSNumber * value;
+@property (readonly, strong, nonatomic) NSNumber * rawValue;
 @property (readonly, assign, nonatomic) NSUInteger decimals;
 @property (readwrite, copy, nonatomic) NSString * mode;
 @property (readonly, strong, nonatomic) NSArray * modes;
 @property (readonly, copy, nonatomic) NSString * unit;
 
-@property (readonly, nonatomic) NSString * formattedValue;
+@property (readonly, nonatomic) NSString * valueString;
+@property (readonly, nonatomic) NSNumber * formattedValue;
 
 - (XMPPMessage *)sendMessageWithBody:(NSString *)body;
 

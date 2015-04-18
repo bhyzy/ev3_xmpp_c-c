@@ -10,30 +10,13 @@
 #import <CorePlot/CorePlot.h>
 typedef NSRect CGNSRect;
 
-extern NSString *const kDemoPlots;
-extern NSString *const kPieCharts;
-extern NSString *const kLinePlots;
-extern NSString *const kBarPlots;
-extern NSString *const kFinancialPlots;
-
 @class CPTGraph;
 @class CPTTheme;
 
 @interface PlotItem : NSObject
-{
-//    @private
-//    CPTGraphHostingView *defaultLayerHostingView;
-//
-//    NSMutableArray *graphs;
-//    NSString *section;
-//    NSString *title;
-//    CPTNativeImage *cachedImage;
-}
 
 @property (nonatomic, retain) CPTGraphHostingView *defaultLayerHostingView;
 @property (nonatomic, retain) NSMutableArray *graphs;
-@property (nonatomic, retain) NSString *section;
-@property (nonatomic, retain) NSString *title;
 @property (strong, nonatomic) CPTNativeImage *cachedImage;
 
 -(void)renderInView:(NSView *)hostingView withTheme:(CPTTheme *)theme animated:(BOOL)animated;
@@ -43,9 +26,6 @@ extern NSString *const kFinancialPlots;
 
 -(void)renderInLayer:(CPTGraphHostingView *)layerHostingView withTheme:(CPTTheme *)theme animated:(BOOL)animated;
 
--(void)setTitleDefaultsForGraph:(CPTGraph *)graph withBounds:(CGRect)bounds;
--(void)setPaddingDefaultsForGraph:(CPTGraph *)graph withBounds:(CGRect)bounds;
-
 -(void)reloadData;
 -(void)applyTheme:(CPTTheme *)theme toGraph:(CPTGraph *)graph withDefault:(CPTTheme *)defaultTheme;
 
@@ -54,7 +34,5 @@ extern NSString *const kFinancialPlots;
 -(void)killGraph;
 
 -(void)generateData;
-
--(NSComparisonResult)titleCompare:(PlotItem *)other;
 
 @end

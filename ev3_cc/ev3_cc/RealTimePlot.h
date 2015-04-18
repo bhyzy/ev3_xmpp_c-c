@@ -13,6 +13,8 @@
     NSTimer *dataTimer;
 }
 
--(void)newData:(NSTimer *)theTimer;
+@property (strong, nonatomic) NSNumber * currentValue;
+
+- (void)newData:(NSTimer *)theTimer;
 
 @end

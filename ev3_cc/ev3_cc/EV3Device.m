@@ -22,7 +22,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @property (strong, nonatomic) XMPPJID * roomOwnerJID;
 
 @property (readwrite, copy, nonatomic) NSString * name;
-@property (readwrite, strong, nonatomic) NSNumber * value;
+@property (readwrite, strong, nonatomic) NSNumber * rawValue;
 @property (readwrite, assign, nonatomic) NSUInteger decimals;
 @property (readwrite, strong, nonatomic) NSArray * modes;
 @property (readwrite, copy, nonatomic) NSString * unit;
@@ -74,10 +74,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return message;
 }
 
-- (NSString *)formattedValue
+- (NSNumber *)formattedValue
 {
-    double value = self.value.doubleValue / pow(10, self.decimals);
-    return [NSString stringWithFormat:@"%.1f %@", value, self.unit];
+    return @(self.rawValue.doubleValue / pow(10, self.decimals));
+}
+
++ (NSSet *)keyPathsForValuesAffectingFormattedValue
+{
+    return [NSSet setWithObjects:@"rawValue", @"decimals", nil];
+}
+
+- (NSString *)valueString
+{
+    return [NSString stringWithFormat:@"%.1f %@", self.formattedValue.doubleValue, self.unit];
+}
+
++ (NSSet *)keyPathsForValuesAffectingValueString
+{
+    return [NSSet setWithObjects:@"formattedValue", @"unit", nil];
 }
 
 - (void)setMode:(NSString *)mode
@@ -108,8 +122,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     if ([messageType isEqualToString:@"value"]) {
         // at the moment we're only supporting single-value modes
-        self.value = [self.numberFormatter numberFromString:argument];
-        DDLogVerbose(@"%@, %@ # did update value of %@: %@", THIS_FILE, THIS_METHOD, self.roomJID, self.value);
+        self.rawValue = [self.numberFormatter numberFromString:argument];
+        DDLogVerbose(@"%@, %@ # did update value of %@: %@", THIS_FILE, THIS_METHOD, self.roomJID, self.rawValue);
     } else if ([messageType isEqualToString:@"mode"]) {
         self.mode = argument;
     } else if ([messageType isEqualToString:@"unit"]) {
@@ -121,11 +135,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     } else {
         DDLogError(@"%@, %@ # failed to parse message body (unrecognized message type '%@'): %@", THIS_FILE, THIS_METHOD, messageType, body);
     }
-}
-
-+ (NSSet *)keyPathsForValuesAffectingFormattedValue
-{
-    return [NSSet setWithObjects:@"value", @"decimals", @"unity", nil];
 }
 
 #pragma mark - XMPP Stream Delegate

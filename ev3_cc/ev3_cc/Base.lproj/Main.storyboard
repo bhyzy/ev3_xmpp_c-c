@@ -813,8 +813,40 @@
                                         </textField>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="ToP-jM-6yP">
                                             <rect key="frame" x="423" y="3" width="200" height="245"/>
+                                            <subviews>
+                                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0mW-uq-bTZ">
+                                                    <rect key="frame" x="16" y="174" width="73" height="26"/>
+                                                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="L4W-gR-GdX" id="nnU-h1-yc4">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="menu"/>
+                                                        <menu key="menu" id="i5Q-Wv-p8a">
+                                                            <items>
+                                                                <menuItem title="Item 1" state="on" id="L4W-gR-GdX"/>
+                                                                <menuItem title="Item 2" id="q8O-OY-cxJ"/>
+                                                                <menuItem title="Item 3" id="u2z-XN-aBv"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                    <connections>
+                                                        <binding destination="Xb3-kP-f8f" name="contentValues" keyPath="selection.modes" id="jOK-L0-hOO"/>
+                                                        <binding destination="Xb3-kP-f8f" name="selectedValue" keyPath="selection.mode" previousBinding="jOK-L0-hOO" id="gLE-aF-5Hg"/>
+                                                    </connections>
+                                                </popUpButton>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mxq-Uz-sJ0">
+                                                    <rect key="frame" x="18" y="208" width="44" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mode:" id="7ew-uc-yof">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="0iT-6Z-7CQ"/>
+                                                <constraint firstItem="0mW-uq-bTZ" firstAttribute="leading" secondItem="mxq-Uz-sJ0" secondAttribute="leading" constant="-2" id="bCE-xW-iuc"/>
+                                                <constraint firstItem="0mW-uq-bTZ" firstAttribute="top" secondItem="mxq-Uz-sJ0" secondAttribute="bottom" constant="10" id="dSJ-qb-zLy"/>
+                                                <constraint firstItem="mxq-Uz-sJ0" firstAttribute="leading" secondItem="ToP-jM-6yP" secondAttribute="leading" constant="20" id="g68-Qj-OH3"/>
+                                                <constraint firstItem="mxq-Uz-sJ0" firstAttribute="top" secondItem="ToP-jM-6yP" secondAttribute="top" constant="20" id="gig-c6-gwj"/>
                                             </constraints>
                                         </customView>
                                         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-dl-OLL">

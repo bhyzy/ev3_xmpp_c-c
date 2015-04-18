@@ -80,6 +80,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return [NSString stringWithFormat:@"%.1f %@", value, self.unit];
 }
 
+- (void)setMode:(NSString *)mode
+{
+    if (![mode isEqualToString:self.mode]) {
+        _mode = [mode copy];
+        [self sendMessageWithBody:[@"set mode " stringByAppendingString:mode]];
+    }
+}
+
 #pragma mark - Private Methods
 
 - (void)handleDeviceMessageBody:(NSString *)body

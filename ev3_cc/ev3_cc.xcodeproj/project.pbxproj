@@ -53,6 +53,8 @@
 		9889334B1AE3CF7E003DC7B7 /* SensorCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9889334A1AE3CF7E003DC7B7 /* SensorCommandViewController.m */; };
 		9889334F1AE3CFAA003DC7B7 /* DeviceCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9889334E1AE3CFAA003DC7B7 /* DeviceCommandViewController.m */; };
 		988933521AE3D717003DC7B7 /* MotorCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988933511AE3D717003DC7B7 /* MotorCommandViewController.m */; };
+		988933551AE3D909003DC7B7 /* EV3Motor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988933541AE3D909003DC7B7 /* EV3Motor.m */; };
+		988933581AE3D99B003DC7B7 /* EV3Sensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 988933571AE3D99A003DC7B7 /* EV3Sensor.m */; };
 		988EF6C81ADA971E00ED30C2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6C71ADA971E00ED30C2 /* SignInViewController.m */; };
 		988EF6CB1ADA972E00ED30C2 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */; };
 		988EF7281ADAD68600ED30C2 /* XMPPRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7061ADAD68600ED30C2 /* XMPPRoom.xcdatamodeld */; };
@@ -199,6 +201,11 @@
 		9889334E1AE3CFAA003DC7B7 /* DeviceCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandViewController.m; sourceTree = "<group>"; };
 		988933501AE3D717003DC7B7 /* MotorCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotorCommandViewController.h; sourceTree = "<group>"; };
 		988933511AE3D717003DC7B7 /* MotorCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotorCommandViewController.m; sourceTree = "<group>"; };
+		988933531AE3D909003DC7B7 /* EV3Motor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EV3Motor.h; sourceTree = "<group>"; };
+		988933541AE3D909003DC7B7 /* EV3Motor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EV3Motor.m; sourceTree = "<group>"; };
+		988933561AE3D99A003DC7B7 /* EV3Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EV3Sensor.h; sourceTree = "<group>"; };
+		988933571AE3D99A003DC7B7 /* EV3Sensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EV3Sensor.m; sourceTree = "<group>"; };
+		988933591AE3DAA2003DC7B7 /* EV3Device+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EV3Device+Subclass.h"; sourceTree = "<group>"; };
 		988EF6C61ADA971E00ED30C2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		988EF6C71ADA971E00ED30C2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -696,9 +703,14 @@
 		989510A31AE00BE200CA51A4 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
+				988933431AE2BCD1003DC7B7 /* EV3ValueRange.h */,
 				988EF7481ADAFB6300ED30C2 /* EV3Device.h */,
 				988EF7491ADAFB6300ED30C2 /* EV3Device.m */,
-				988933431AE2BCD1003DC7B7 /* EV3ValueRange.h */,
+				988933561AE3D99A003DC7B7 /* EV3Sensor.h */,
+				988933571AE3D99A003DC7B7 /* EV3Sensor.m */,
+				988933531AE3D909003DC7B7 /* EV3Motor.h */,
+				988933541AE3D909003DC7B7 /* EV3Motor.m */,
+				988933591AE3DAA2003DC7B7 /* EV3Device+Subclass.h */,
 			);
 			name = Devices;
 			sourceTree = "<group>";
@@ -819,6 +831,7 @@
 				984FC9E71AD5C767002B3233 /* RFImageToDataTransformer.m in Sources */,
 				984FC9DB1AD5C767002B3233 /* NSNumber+XMPP.m in Sources */,
 				988EF7451ADAD74A00ED30C2 /* XMPPCoreDataStorage.m in Sources */,
+				988933551AE3D909003DC7B7 /* EV3Motor.m in Sources */,
 				984FC9DC1AD5C767002B3233 /* NSXMLElement+XMPP.m in Sources */,
 				984FC9E11AD5C767002B3233 /* XMPPModule.m in Sources */,
 				988EF7291ADAD68600ED30C2 /* XMPPRoomCoreDataStorage.m in Sources */,
@@ -860,6 +873,7 @@
 				988EF7401ADAD6FD00ED30C2 /* XMPPDateTimeProfiles.m in Sources */,
 				984FC9DF1AD5C767002B3233 /* XMPPJID.m in Sources */,
 				984FC9D91AD5C767002B3233 /* XMPPXOAuth2Google.m in Sources */,
+				988933581AE3D99B003DC7B7 /* EV3Sensor.m in Sources */,
 				98514A421ADC592500A74087 /* DeviceViewController.m in Sources */,
 				984FC9D51AD5C767002B3233 /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				984FC9DD1AD5C767002B3233 /* XMPPElement.m in Sources */,

@@ -906,7 +906,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                     <connections>
-                        <segue destination="MPo-0s-rht" kind="custom" identifier="controlDevice" customClass="ContentSegue" id="kHc-OM-OTN"/>
+                        <segue destination="MPo-0s-rht" kind="custom" identifier="controlSensor" customClass="ContentSegue" id="kHc-OM-OTN"/>
                         <segue destination="hbc-cq-ydg" kind="custom" identifier="controlMotor" customClass="ContentSegue" id="h6U-Lx-dE2"/>
                     </connections>
                 </viewController>
@@ -958,7 +958,7 @@
                     </view>
                 </viewController>
                 <customObject id="Jc8-if-Mdk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="EV3Device" editable="NO" id="JFM-zi-8LG">
+                <objectController objectClassName="EV3Sensor" editable="NO" id="JFM-zi-8LG">
                     <connections>
                         <binding destination="MPo-0s-rht" name="contentObject" keyPath="self.representedObject" id="0kx-FR-9nh"/>
                     </connections>

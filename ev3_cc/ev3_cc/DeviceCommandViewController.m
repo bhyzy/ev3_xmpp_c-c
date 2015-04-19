@@ -8,6 +8,8 @@
 
 #import "DeviceCommandViewController.h"
 #import "EV3Device.h"
+#import "EV3Sensor.h"
+#import "EV3Motor.h"
 
 @interface DeviceCommandViewController ()
 
@@ -31,7 +33,9 @@
 
 - (NSString *)segueIdentifierForDevice:(EV3Device *)device
 {
-    if ([device isKindOfClass:[EV3Device class]]) {
+    if ([device isKindOfClass:[EV3Sensor class]]) {
+        return @"controlSensor";
+    } else if ([device isKindOfClass:[EV3Motor class]]) {
         return @"controlMotor";
     } else {
         return nil;

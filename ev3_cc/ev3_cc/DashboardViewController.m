@@ -93,7 +93,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray *items = [queryElement elementsForName:@"item"];
     for (NSXMLElement *item in items) {
         XMPPJID *roomJID = [XMPPJID jidWithString:[item attributeStringValueForName:@"jid"]];
-        EV3Device *device = [[EV3Device alloc] initWithRoomJID:roomJID stream:self.xmppStream];
+        EV3Device *device = [EV3Device deviceWithRoomJID:roomJID stream:self.xmppStream];
         [mutableDevices addObject:device];
     }
 }

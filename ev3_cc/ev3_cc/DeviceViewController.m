@@ -12,6 +12,7 @@
 #import "XMPPStream.h"
 #import "XMPPMessage+XEP0045.h"
 #import "RealTimePlot.h"
+#import "DeviceCommandViewController.h"
 #import <CorePlot/CorePlot.h>
 
 @interface DeviceViewController () <XMPPStreamDelegate, XMPPRoomDelegate>
@@ -24,6 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet NSView * plotView;
 @property (strong, nonatomic) RealTimePlot * plot;
+
+@property (weak, nonatomic) DeviceCommandViewController * commandViewController;
 
 @end
 
@@ -56,6 +59,8 @@
     
     self.plot.valueRange = self.device.valueRange;
     [self.device addObserver:self forKeyPath:@"valueRange" options:0 context:NULL];
+    
+    self.commandViewController.controlledDevice = device;
 }
 
 #pragma mark - View Controller Life Cycle
@@ -109,6 +114,13 @@
         } else if ([keyPath isEqualToString:@"valueRange"]) {
             self.plot.valueRange = self.device.valueRange;
         }
+    }
+}
+
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"deviceCommand"]) {
+        self.commandViewController = (DeviceCommandViewController *)segue.destinationController;
     }
 }
 

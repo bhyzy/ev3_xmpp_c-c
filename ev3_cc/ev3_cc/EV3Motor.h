@@ -10,6 +10,12 @@
 
 @interface EV3Motor : EV3Device
 
+// Range: [-100.0, 100.0] (percent of max power in either direction)
+@property (assign, nonatomic) double dutyCycle;
+
 + (BOOL)isMotorDeviceName:(NSString *)deviceName;
+
+- (void)reset;
+- (void)stop;
 
 @end

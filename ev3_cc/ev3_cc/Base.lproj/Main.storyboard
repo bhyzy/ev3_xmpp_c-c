@@ -980,6 +980,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="resetMotor:" target="hbc-cq-ydg" id="pYt-39-qVI"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aar-Zz-h7i">
                                 <rect key="frame" x="93" y="146" width="70" height="32"/>
@@ -987,6 +990,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="stopMotor:" target="hbc-cq-ydg" id="GYZ-w2-RP1"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vvl-R8-3tB">
                                 <rect key="frame" x="18" y="116" width="73" height="17"/>
@@ -999,14 +1005,21 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="krg-Gr-NfR">
                                 <rect key="frame" x="95" y="116" width="20" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="24" id="Imf-uQ-uQr">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" minimumIntegerDigits="0" maximumIntegerDigits="42" id="Xoi-iZ-9FR"/>
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="oii-qS-9V2" name="value" keyPath="selection.dutyCycle" id="hoG-sH-a8M"/>
+                                </connections>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="01D-0z-8RA">
-                                <rect key="frame" x="18" y="87" width="196" height="21"/>
-                                <sliderCell key="cell" state="on" alignment="left" minValue="-100" maxValue="100" doubleValue="24" tickMarkPosition="above" sliderType="linear" id="28e-mO-RGi"/>
+                                <rect key="frame" x="18" y="80" width="196" height="26"/>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-100" maxValue="100" doubleValue="30" tickMarkPosition="above" numberOfTickMarks="21" allowsTickMarkValuesOnly="YES" sliderType="linear" id="28e-mO-RGi"/>
+                                <connections>
+                                    <binding destination="oii-qS-9V2" name="value" keyPath="selection.dutyCycle" id="hny-3e-Kt9"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <constraints>
@@ -1026,8 +1039,13 @@
                     </view>
                 </viewController>
                 <customObject id="ZQg-B5-qgZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <objectController objectClassName="EV3Motor" editable="NO" id="oii-qS-9V2">
+                    <connections>
+                        <binding destination="hbc-cq-ydg" name="contentObject" keyPath="self.representedObject" id="6X1-HE-n0t"/>
+                    </connections>
+                </objectController>
             </objects>
-            <point key="canvasLocation" x="2056" y="1380"/>
+            <point key="canvasLocation" x="2056" y="1394"/>
         </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="RDj-Pg-gGu">

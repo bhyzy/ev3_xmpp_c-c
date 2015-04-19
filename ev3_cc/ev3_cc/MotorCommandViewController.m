@@ -7,16 +7,23 @@
 //
 
 #import "MotorCommandViewController.h"
+#import "EV3Motor.h"
 
 @interface MotorCommandViewController ()
-
 @end
 
 @implementation MotorCommandViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
+- (IBAction)resetMotor:(id)sender
+{
+    EV3Motor *motor = (EV3Motor *)self.representedObject;
+    [motor reset];
+}
+
+- (IBAction)stopMotor:(id)sender
+{
+    EV3Motor *motor = (EV3Motor *)self.representedObject;
+    [motor stop];
 }
 
 @end

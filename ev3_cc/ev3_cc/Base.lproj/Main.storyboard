@@ -902,27 +902,28 @@
             <objects>
                 <viewController id="e33-0j-KPy" customClass="DeviceCommandViewController" sceneMemberID="viewController">
                     <view key="view" id="moQ-b8-wjM">
-                        <rect key="frame" x="0.0" y="0.0" width="196" height="134"/>
+                        <rect key="frame" x="0.0" y="0.0" width="176" height="121"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                     <connections>
                         <segue destination="MPo-0s-rht" kind="custom" identifier="controlDevice" customClass="ContentSegue" id="kHc-OM-OTN"/>
+                        <segue destination="hbc-cq-ydg" kind="custom" identifier="controlMotor" customClass="ContentSegue" id="h6U-Lx-dE2"/>
                     </connections>
                 </viewController>
                 <customObject id="0Un-hg-7bU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="1098"/>
+            <point key="canvasLocation" x="1847" y="1091.5"/>
         </scene>
         <!--Sensor Command View Controller-->
         <scene sceneID="bLe-gz-wpH">
             <objects>
                 <viewController id="MPo-0s-rht" customClass="SensorCommandViewController" sceneMemberID="viewController">
                     <view key="view" id="xCK-XS-0it">
-                        <rect key="frame" x="0.0" y="0.0" width="334" height="218"/>
+                        <rect key="frame" x="0.0" y="0.0" width="199" height="189"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q08-ii-ewD">
-                                <rect key="frame" x="16" y="149" width="73" height="26"/>
+                                <rect key="frame" x="16" y="120" width="73" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Z4T-IF-sTE" id="oHu-hZ-hfW">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -940,7 +941,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3Ug-Bj-JOL">
-                                <rect key="frame" x="18" y="181" width="44" height="17"/>
+                                <rect key="frame" x="18" y="152" width="44" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mode:" id="rc0-He-fIf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -963,7 +964,70 @@
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="1828" y="1438"/>
+            <point key="canvasLocation" x="1770.5" y="1396.5"/>
+        </scene>
+        <!--Motor Command View Controller-->
+        <scene sceneID="mzv-ds-U6l">
+            <objects>
+                <viewController id="hbc-cq-ydg" customClass="MotorCommandViewController" sceneMemberID="viewController">
+                    <view key="view" id="yY8-Ud-Jik">
+                        <rect key="frame" x="0.0" y="0.0" width="232" height="194"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Udi-bk-JlP">
+                                <rect key="frame" x="14" y="146" width="76" height="32"/>
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4hf-gV-sh0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aar-Zz-h7i">
+                                <rect key="frame" x="93" y="146" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tmu-xY-Ae3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vvl-R8-3tB">
+                                <rect key="frame" x="18" y="116" width="73" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duty cycle:" id="Y4f-9L-9XM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="krg-Gr-NfR">
+                                <rect key="frame" x="95" y="116" width="20" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="24" id="Imf-uQ-uQr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="01D-0z-8RA">
+                                <rect key="frame" x="18" y="87" width="196" height="21"/>
+                                <sliderCell key="cell" state="on" alignment="left" minValue="-100" maxValue="100" doubleValue="24" tickMarkPosition="above" sliderType="linear" id="28e-mO-RGi"/>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Udi-bk-JlP" firstAttribute="top" secondItem="yY8-Ud-Jik" secondAttribute="top" constant="20" id="28h-FW-wHW"/>
+                            <constraint firstItem="Aar-Zz-h7i" firstAttribute="bottom" secondItem="Udi-bk-JlP" secondAttribute="bottom" id="CxV-ba-alR"/>
+                            <constraint firstItem="Udi-bk-JlP" firstAttribute="leading" secondItem="Vvl-R8-3tB" secondAttribute="leading" id="QQE-WI-0fN"/>
+                            <constraint firstItem="krg-Gr-NfR" firstAttribute="leading" secondItem="Vvl-R8-3tB" secondAttribute="trailing" constant="8" id="S9E-6m-MJm"/>
+                            <constraint firstItem="Vvl-R8-3tB" firstAttribute="top" secondItem="Udi-bk-JlP" secondAttribute="bottom" constant="20" id="ScO-mK-Nt5"/>
+                            <constraint firstItem="Aar-Zz-h7i" firstAttribute="leading" secondItem="Udi-bk-JlP" secondAttribute="trailing" constant="15" id="X7X-lN-DYl"/>
+                            <constraint firstItem="krg-Gr-NfR" firstAttribute="baseline" secondItem="Vvl-R8-3tB" secondAttribute="baseline" id="YYU-WM-UWa"/>
+                            <constraint firstAttribute="trailing" secondItem="01D-0z-8RA" secondAttribute="trailing" constant="20" id="drq-Xw-cc7"/>
+                            <constraint firstItem="01D-0z-8RA" firstAttribute="leading" secondItem="Vvl-R8-3tB" secondAttribute="leading" id="rLW-mL-8sh"/>
+                            <constraint firstItem="Udi-bk-JlP" firstAttribute="leading" secondItem="yY8-Ud-Jik" secondAttribute="leading" constant="20" id="sge-Jm-ikI"/>
+                            <constraint firstItem="01D-0z-8RA" firstAttribute="top" secondItem="Vvl-R8-3tB" secondAttribute="bottom" constant="10" id="wkv-2z-o2t"/>
+                            <constraint firstItem="Aar-Zz-h7i" firstAttribute="top" secondItem="Udi-bk-JlP" secondAttribute="top" id="zjc-LC-Mx9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="ZQg-B5-qgZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2056" y="1380"/>
         </scene>
         <!--Dashboard View Controller-->
         <scene sceneID="RDj-Pg-gGu">

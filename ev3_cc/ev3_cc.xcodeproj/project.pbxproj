@@ -52,6 +52,7 @@
 		988933481AE3CF20003DC7B7 /* ContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 988933471AE3CF20003DC7B7 /* ContentSegue.m */; };
 		9889334B1AE3CF7E003DC7B7 /* SensorCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9889334A1AE3CF7E003DC7B7 /* SensorCommandViewController.m */; };
 		9889334F1AE3CFAA003DC7B7 /* DeviceCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9889334E1AE3CFAA003DC7B7 /* DeviceCommandViewController.m */; };
+		988933521AE3D717003DC7B7 /* MotorCommandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988933511AE3D717003DC7B7 /* MotorCommandViewController.m */; };
 		988EF6C81ADA971E00ED30C2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6C71ADA971E00ED30C2 /* SignInViewController.m */; };
 		988EF6CB1ADA972E00ED30C2 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 988EF6CA1ADA972E00ED30C2 /* DashboardViewController.m */; };
 		988EF7281ADAD68600ED30C2 /* XMPPRoom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 988EF7061ADAD68600ED30C2 /* XMPPRoom.xcdatamodeld */; };
@@ -196,6 +197,8 @@
 		9889334A1AE3CF7E003DC7B7 /* SensorCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorCommandViewController.m; sourceTree = "<group>"; };
 		9889334D1AE3CFAA003DC7B7 /* DeviceCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandViewController.h; sourceTree = "<group>"; };
 		9889334E1AE3CFAA003DC7B7 /* DeviceCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandViewController.m; sourceTree = "<group>"; };
+		988933501AE3D717003DC7B7 /* MotorCommandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotorCommandViewController.h; sourceTree = "<group>"; };
+		988933511AE3D717003DC7B7 /* MotorCommandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotorCommandViewController.m; sourceTree = "<group>"; };
 		988EF6C61ADA971E00ED30C2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		988EF6C71ADA971E00ED30C2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		988EF6C91ADA972E00ED30C2 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 				9889334E1AE3CFAA003DC7B7 /* DeviceCommandViewController.m */,
 				988933491AE3CF7E003DC7B7 /* SensorCommandViewController.h */,
 				9889334A1AE3CF7E003DC7B7 /* SensorCommandViewController.m */,
+				988933501AE3D717003DC7B7 /* MotorCommandViewController.h */,
+				988933511AE3D717003DC7B7 /* MotorCommandViewController.m */,
 			);
 			name = "Command & control";
 			sourceTree = "<group>";
@@ -820,6 +825,7 @@
 				988EF72A1ADAD68600ED30C2 /* XMPPRoomMessageCoreDataStorageObject.m in Sources */,
 				984FC9E91AD5C767002B3233 /* XMPPSRVResolver.m in Sources */,
 				984FC9E81AD5C767002B3233 /* XMPPIDTracker.m in Sources */,
+				988933521AE3D717003DC7B7 /* MotorCommandViewController.m in Sources */,
 				988EF7311ADAD68600ED30C2 /* XMPPRoomMessageMemoryStorageObject.m in Sources */,
 				98E043BC1ADD67CA00AD9F5B /* RealTimePlot.m in Sources */,
 				984FC9841AD5C622002B3233 /* DDLog.m in Sources */,

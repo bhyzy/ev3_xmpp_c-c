@@ -32,7 +32,7 @@
 - (NSString *)segueIdentifierForDevice:(EV3Device *)device
 {
     if ([device isKindOfClass:[EV3Device class]]) {
-        return @"controlDevice";
+        return @"controlMotor";
     } else {
         return nil;
     }
